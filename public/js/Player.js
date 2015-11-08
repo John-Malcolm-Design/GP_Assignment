@@ -41,9 +41,13 @@ var Player = function(startX, startY, fighterName) {
 
 		// Up key takes priority over down
 		if (keys.up) {
-			y -= moveAmount;
+			if(y > 385 && y < 485){
+				return;
+			} else{
+				y = 385;
+			}
 		} else if (keys.down) {
-			y += moveAmount;
+			y = y;
 		};
 
 		// Left key takes priority over right

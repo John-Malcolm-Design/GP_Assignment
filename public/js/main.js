@@ -26,15 +26,6 @@ function init() {
 	// Initialise keyboard controls
 	keys = new Keys();
 
-	// Calculate a random start position for the local player
-	// The minus 5 (half a player size) stops the player being
-	// placed right on the egde of the screen
-	var startX = Math.round(Math.random()*(canvas.width-5)),
-		startY = Math.round(Math.random()*(canvas.height-5));
-
-	// Initialise the local player
-	localPlayer = new Player(startX, startY);
-
 	// Initialise socket connection
 	socket = io.connect("http://localhost:3000");
 
@@ -56,9 +47,6 @@ var setEventHandlers = function() {
 	// Keyboard
 	window.addEventListener("keydown", onKeydown, false);
 	window.addEventListener("keyup", onKeyup, false);
-
-	// Window resize
-	window.addEventListener("resize", onResize, false);
 
 	// Socket connection successful
 	socket.on("connect", onSocketConnected);
@@ -88,13 +76,6 @@ function onKeyup(e) {
 	if (localPlayer) {
 		keys.onKeyUp(e);
 	};
-};
-
-// Browser window resize
-function onResize(e) {
-	// Maximise the canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
 };
 
 // Socket connected
@@ -159,7 +140,7 @@ function animate() {
 	update();
 	draw();
 
-	// Request a new animation frame using Paul Irish's shim
+	// Request a new animation frame using Paul Irish's code
 	window.requestAnimFrame(animate);
 };
 
@@ -168,6 +149,11 @@ function animate() {
 ** GAME UPDATE
 **************************************************/
 function update() {
+
+	if(localPlayer.getY() < 485){
+		localPlayer.setY(localPlayer.getY() + 3);
+	}
+
 	// Update local player and check for change
 	if (localPlayer.update(keys)) {
 		// Send local player data to the game server
@@ -186,6 +172,9 @@ function draw() {
 	// Draws BG Image
 	bgGame = document.getElementById("bg-game");
   	ctx.drawImage(bgGame, 0, 0);
+
+	ctx.fillStyle="#FF0000";
+  	ctx.fillRect(0, 580, 800, 20);
 
 	// Draw the local player
 	localPlayer.draw(ctx);
@@ -339,6 +328,16 @@ function newGame(fighter) {
   if (fighter == 0) {
     var fighterImg = document.getElementById("jumping-jimbo-img");
     var name1 = "jumping-jimbo-img";
+
+    // Calculate a random start position for the local player
+	// The minus 5 (half a player size) stops the player being
+	// placed right on the egde of the screen
+	var startX = 650,
+		startY = 485;
+
+	// Initialise the local player
+	localPlayer = new Player(startX, startY);
+
     localPlayer.setName(name1);
     socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name1});
     animate();
@@ -346,6 +345,15 @@ function newGame(fighter) {
   } else if (fighter == 1) {
     var fighterImg = document.getElementById("fistyCuffsMcGeeImg");
     var name2 = "fistyCuffsMcGeeImg";
+
+    // Calculate a random start position for the local player
+	// The minus 5 (half a player size) stops the player being
+	// placed right on the egde of the screen
+	var startX = 25,
+		startY = 485;
+
+	// Initialise the local player
+	localPlayer = new Player(startX, startY);
     localPlayer.setName(name2);
    	socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name2});
     animate();
@@ -353,19 +361,4 @@ function newGame(fighter) {
   }
 }
 
-
-// Add an event listener to the keypress event.
-window.addEventListener("keydown", function(event) { 
-
-switch(event.keyCode) {
-  case 39:
-      xGlobal = xGlobal + 10;
-      console.log('x+');
-    break;
-  case 37:
-      xGlobal = xGlobal - 10;
-      console.log('x-');
-    break;
-}
-});
 
