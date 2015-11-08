@@ -7,7 +7,8 @@ var Player = function(startX, startY, fighterName) {
 		name = fighterName,
 		id,
 		moveAmount = 2,
-		oldName = fighterName;
+		normal = fighterName,
+		reverse = fighterName + '-rvrs';
 	
 	// Getters and setters
 	var getX = function() {
@@ -22,6 +23,14 @@ var Player = function(startX, startY, fighterName) {
 		return name;
 	};
 
+	var getReverse = function() {
+		return reverse;
+	};
+
+	var getNormal = function() {
+		return normal;
+	};
+
 	var setX = function(newX) {
 		x = newX;
 	};
@@ -32,6 +41,14 @@ var Player = function(startX, startY, fighterName) {
 
 	var setName = function(newName) {
 		name = newName;
+	};
+
+	var setReverse = function(newReverse) {
+		reverse = newReverse;
+	};
+
+	var setNormal = function(newNormal) {
+		normal = newNormal;
 	};
 
 	// Update player position
@@ -53,13 +70,13 @@ var Player = function(startX, startY, fighterName) {
 
 		// Left key takes priority over right
 		if (keys.left) {
-			if(this.getName() == "jumping-jimbo-rvrs"){
-				this.setName("jumping-jimbo-img");
+			if(this.getName() == this.getReverse()){
+				this.setName(this.getNormal());
 			}
 			x -= moveAmount;
 		} else if (keys.right) {
-			if(this.getName() == "jumping-jimbo-img"){
-				this.setName("jumping-jimbo-rvrs");
+			if(this.getName() == this.getNormal()){
+				this.setName(this.getReverse());
 			}
 			x += moveAmount;
 		};
@@ -76,10 +93,10 @@ var Player = function(startX, startY, fighterName) {
 	var changeState = function(condition){
 		switch(condition){
 			case "falling":
-				this.setName("fistyCuffsMcGeeImg");
+				this.setName("fisty-cuffs-img");
 				break;
 			case "normal":
-				this.setName(oldName);
+				this.setName(normal);
 				break;
 		}
 	}
@@ -88,10 +105,14 @@ var Player = function(startX, startY, fighterName) {
 	return {
 		getX: getX,
 		getY: getY,
-		getName: getName,		
+		getName: getName,	
+		getReverse: getReverse,
+		getNormal: getNormal,
 		setX: setX,
 		setY: setY,
 		setName: setName,
+		setReverse: setReverse,
+		setNormal: setNormal,
 		update: update,
 		changeState: changeState,
 		draw: draw

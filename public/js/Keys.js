@@ -16,6 +16,7 @@ var Keys = function(up, left, right, down) {
 				that.left = true;
 				break;
 			case 38: // Up
+				localPlayer.changeState("falling");
 				that.up = true;
 				break;
 			case 39: // Right
@@ -35,6 +36,7 @@ var Keys = function(up, left, right, down) {
 				that.left = false;
 				break;
 			case 38: // Up
+				localPlayer.changeState("normal");
 				that.up = false;
 				break;
 			case 39: // Right
