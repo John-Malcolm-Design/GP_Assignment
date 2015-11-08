@@ -151,7 +151,11 @@ function animate() {
 function update() {
 
 	if(localPlayer.getY() < 485){
+		localPlayer.changeState("falling");
 		localPlayer.setY(localPlayer.getY() + 3);
+	} 
+	if(localPlayer.getY() > 484){
+		localPlayer.changeState("normal");
 	}
 
 	// Update local player and check for change
@@ -336,9 +340,8 @@ function newGame(fighter) {
 		startY = 485;
 
 	// Initialise the local player
-	localPlayer = new Player(startX, startY);
+	localPlayer = new Player(startX, startY, name1);
 
-    localPlayer.setName(name1);
     socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name1});
     animate();
 
@@ -353,8 +356,8 @@ function newGame(fighter) {
 		startY = 485;
 
 	// Initialise the local player
-	localPlayer = new Player(startX, startY);
-    localPlayer.setName(name2);
+	localPlayer = new Player(startX, startY, name2);
+
    	socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name2});
     animate();
 

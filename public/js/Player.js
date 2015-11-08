@@ -6,7 +6,8 @@ var Player = function(startX, startY, fighterName) {
 		y = startY,
 		name = fighterName,
 		id,
-		moveAmount = 2;
+		moveAmount = 2,
+		oldName = fighterName;
 	
 	// Getters and setters
 	var getX = function() {
@@ -52,8 +53,14 @@ var Player = function(startX, startY, fighterName) {
 
 		// Left key takes priority over right
 		if (keys.left) {
+			if(this.getName() == "jumping-jimbo-rvrs"){
+				this.setName("jumping-jimbo-img");
+			}
 			x -= moveAmount;
 		} else if (keys.right) {
+			if(this.getName() == "jumping-jimbo-img"){
+				this.setName("jumping-jimbo-rvrs");
+			}
 			x += moveAmount;
 		};
 
@@ -66,15 +73,27 @@ var Player = function(startX, startY, fighterName) {
 		ctx.drawImage(fighter, x, y);
 	};
 
+	var changeState = function(condition){
+		switch(condition){
+			case "falling":
+				this.setName("fistyCuffsMcGeeImg");
+				break;
+			case "normal":
+				this.setName(oldName);
+				break;
+		}
+	}
+
 	// Define which variables and methods can be accessed
 	return {
 		getX: getX,
 		getY: getY,
-		setName: setName,		
+		getName: getName,		
 		setX: setX,
 		setY: setY,
 		setName: setName,
 		update: update,
+		changeState: changeState,
 		draw: draw
 	}
 };
