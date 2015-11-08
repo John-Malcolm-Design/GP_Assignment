@@ -68,19 +68,34 @@ var Player = function(startX, startY, fighterName) {
 			y = y;
 		};
 
-		// Left key takes priority over right
-		if (keys.left) {
-			if(this.getName() == this.getReverse()){
-				this.setName(this.getNormal());
-			}
-			x -= moveAmount;
-		} else if (keys.right) {
-			if(this.getName() == this.getNormal()){
-				this.setName(this.getReverse());
-			}
-			x += moveAmount;
-		};
-
+		if(this.getNormal() == "fisty-cuffs-img"){
+			// Left key takes priority over right
+			if (keys.left) {
+				if(this.getName() == this.getNormal()){
+					this.setName(this.getReverse());
+				}
+				x -= moveAmount;
+			} else if (keys.right) {
+				if(this.getName() == this.getReverse()){
+					this.setName(this.getNormal());
+				}
+				x += moveAmount;
+			};
+		} 
+		else{
+			// Left key takes priority over right
+			if (keys.left) {
+				if(this.getName() == this.getReverse()){
+					this.setName(this.getNormal());
+				}
+				x -= moveAmount;
+			} else if (keys.right) {
+				if(this.getName() == this.getNormal()){
+					this.setName(this.getReverse());
+				}
+				x += moveAmount;
+			};
+		}
 		return (prevX != x || prevY != y) ? true : false;
 	};
 
@@ -93,10 +108,10 @@ var Player = function(startX, startY, fighterName) {
 	var changeState = function(condition){
 		switch(condition){
 			case "falling":
-				this.setName("fisty-cuffs-img");
+				this.setName(this.getNormal() + "-fall");
 				break;
 			case "normal":
-				this.setName(normal);
+				this.setName(this.getNormal());
 				break;
 		}
 	}
