@@ -1,9 +1,10 @@
 /**************************************************
 ** GAME PLAYER CLASS
 **************************************************/
-var Player = function(startX, startY) {
+var Player = function(startX, startY, fighterName) {
 	var x = startX,
 		y = startY,
+		name = fighterName,
 		id,
 		moveAmount = 2;
 	
@@ -16,12 +17,20 @@ var Player = function(startX, startY) {
 		return y;
 	};
 
+	var getName = function() {
+		return name;
+	};
+
 	var setX = function(newX) {
 		x = newX;
 	};
 
 	var setY = function(newY) {
 		y = newY;
+	};
+
+	var setName = function(newName) {
+		name = newName;
 	};
 
 	// Update player position
@@ -49,16 +58,18 @@ var Player = function(startX, startY) {
 
 	// Draw player
 	var draw = function(ctx) {
-		var fistyCuffsMcGeeImg = document.getElementById("fistyCuffsMcGeeImg");
-		ctx.drawImage(fistyCuffsMcGeeImg, x, y);
+		var fighter = document.getElementById(name);
+		ctx.drawImage(fighter, x, y);
 	};
 
 	// Define which variables and methods can be accessed
 	return {
 		getX: getX,
 		getY: getY,
+		setName: setName,		
 		setX: setX,
 		setY: setY,
+		setName: setName,
 		update: update,
 		draw: draw
 	}

@@ -1,9 +1,10 @@
 /*
 Player Class
 */
-var Player = function(startX, startY) {
+var Player = function(startX, startY, fighterName) {
 	var x = startX,
 		y = startY,
+		name = fighterName,
 		id;
 
 	// Getters and setters
@@ -15,6 +16,10 @@ var Player = function(startX, startY) {
 		return y;
 	};
 
+	var getName = function() {
+		return name;
+	};
+
 	var setX = function(newX) {
 		x = newX;
 	};
@@ -23,12 +28,18 @@ var Player = function(startX, startY) {
 		y = newY;
 	};
 
+	var setName = function(newName) {
+		name = newName;
+	};
+
 	// Define which variables and methods can be accessed
 	return {
 		getX: getX,
 		getY: getY,
+		getName: getName,
 		setX: setX,
 		setY: setY,
+		setName: setName,
 		id: id
 	}
 };
