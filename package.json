@@ -1,0 +1,18 @@
+{
+  "name": "gp-assignment-jma",
+  "version": "0.1.0",
+  "description": "Multiplayer Canvas Game using Node & Socket.io",
+  "author": "John Malcolm Anderson",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnmalcolm/GP_Assignment"
+  },
+  "keywords": [
+    "canvas",
+    "socket.io",
+    "game"
+  ],
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
