@@ -1,45 +1,50 @@
-/*
-  Requirements
-*/
-var util = require("util");	// Utility resources (logging, object inspection, etc)
-var express = require('express'); // Server Middleware
-var app     = express(); // Bind to App
-var server  = require('http').createServer(app); // HTTP Server
-var socket = require('socket.io').listen(server); // Bind to Socket.io
-var Player = require("./Player").Player; // Player class
+/**************************************************
+** NODE.JS REQUIREMENTS
+**************************************************/
+var util = require("util");				// Utility resources (logging, object inspection, etc)
+var express = require('express');
+var app     = express();
+var server  = require('http').createServer(app);
+var socket = require('socket.io').listen(server);
+var Player = require("./Player").Player;	// Player class
+
+
+/**************************************************
+** GAME VARIABLES
+**************************************************/
 var	players;	// Array of connected players
 
-/*
-Init Function
-*/
+
+/**************************************************
+** GAME INITIALISATION
+**************************************************/
 function init() {
-	// Initialize the empty array to store the players
+	// Create an empty array to store players
 	players = [];
 
-	// Specify public directory for serving files
 	app.use(express.static(__dirname + '/public'));
 
-	// Specify port to listen on
 	server.listen(3000);
 
 	// Start listening for events
 	setEventHandlers();
 };
 
-/*
-Event Handlers
-*/
+
+/**************************************************
+** GAME EVENT HANDLERS
+**************************************************/
 var setEventHandlers = function() {
-	// Event when new client hits server
-	socket.sockets.on("new client", onNewClient);
+	// Socket.IO
+	socket.sockets.on("connection", onSocketConnection);
 };
 
-// Logs to console new clients details and registers other event handlers
-function onNewClient(client) {
-	util.log("New player has connected: " +client.id);
+// New socket connection
+function onSocketConnection(client) {
+	util.log("New player has connected: "+client.id);
 
 	// Listen for client disconnected
-	client.on("client_disconnect", onClientDisconnect);
+	client.on("disconnect", onClientDisconnect);
 
 	// Listen for new player message
 	client.on("new player", onNewPlayer);
@@ -50,13 +55,13 @@ function onNewClient(client) {
 
 // Socket client has disconnected
 function onClientDisconnect() {
-	util.log("Player has disconnected: " +this.id);
+	util.log("Player has disconnected: "+this.id);
 
 	var removePlayer = playerById(this.id);
 
 	// Player not found
 	if (!removePlayer) {
-		util.log("Player not found: " +this.id);
+		util.log("Player not found: "+this.id);
 		return;
 	};
 
@@ -107,9 +112,9 @@ function onMovePlayer(data) {
 };
 
 
-/*
-Helper Functions
-*/
+/**************************************************
+** GAME HELPER FUNCTIONS
+**************************************************/
 // Find player by ID
 function playerById(id) {
 	var i;
@@ -121,10 +126,8 @@ function playerById(id) {
 	return false;
 };
 
-/*
-Run the game
-*/
+
+/**************************************************
+** RUN THE GAME
+**************************************************/
 init();
-
-
-

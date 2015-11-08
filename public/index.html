@@ -7,12 +7,48 @@
 		<link rel="stylesheet" href="style/main.css">
 	</head>
 	<body>
-		<canvas id="gameCanvas"></canvas>
+<!-- 	  <ul id="messages"></ul>
+	  <form action="">
+	    <input id="m" autocomplete="off" /><button>Send</button>
+	  </form> -->
+
+	  <canvas id="gameCanvas" width="800" height="600">
+	    <div style="display:none;">
+	      <!-- Welcome Screen Resources -->
+	      <img id="bg-intro" src="images/canvas-fighter.jpg"
+	      width="800" height="600">
+	      <img id="title-intro" src="images/play-btn.png"
+	      width="280" height="129">
+	      <img id="title-intro-hover" src="images/play-hover.png"
+	      width="280" height="129">
+	      <img id="play-intro" src="images/canvas-fighter-title.png"
+	      width="472" height="251">
+	      <!-- Pick Player Screen Resources -->
+	      <img id="select-player" src="images/select-player.png"
+	      width="576" height="40">
+	      <img id="jumping-jimbo" src="images/jumping-jimbo.png"
+	      width="262" height="26">
+	      <img id="jumping-jimbo-img" src="images/jumping-jimbo-char.png"
+	      width="200" height="200">
+	      <img id="fistyCuffsMcGeeImg" src="images/fistycuffs-mcgee.png"
+	      width="200" height="200">
+	      <img id="fistyCuffsMcGeeTxt" src="images/fistycuffs-mcgeetxt.png"
+	      width="353" height="42">
+	      <img id="left-arrow" src="images/left-arrow.png"
+	      width="70" height="48">
+	      <img id="right-arrow" src="images/right-arrow.png"
+	      width="70" height="48">
+	      <!-- Active Game Screen Resources -->
+	      <img id="bg-game" src="images/bg-game.png"
+	      width="800" height="600">
+	    </div>
+	  </canvas>
 		<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 		<script src="js/requestAnimationFrame.js"></script>
 		<script src="js/Keys.js"></script>
 		<script src="js/Player.js"></script>
-		<script src="js/game.js"></script>
+		<script src="js/main.js"></script>
 		<script>
 			// Initialise the game
 			init();
