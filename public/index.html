@@ -3,8 +3,17 @@
 	<head>
 		<title>Canvas Fighter</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="style/ericmeyer-reset.css">
-		<link rel="stylesheet" href="style/main.css">
+		<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body { font: 13px Helvetica, Arial; background: #fff;}
+		canvas{
+		  cursor:pointer;
+		  z-index: 0;
+		  position: relative;
+		  display: block;
+		  background-color: rgba(255,255,255,0.8);
+		}
+		</style>
 	</head>
 	<body>
 	  <!-- Canvas Fighter - Game Canvas -->
@@ -41,6 +50,7 @@
 	      <img id="bg-game" src="images/bg-game.png"
 	      width="800" height="600">
 
+		  <!-- Jumping Jimbo -->
 	      <img id="jumping-jimbo-img" src="images/jumping-jimbo-char.png"
 	      width="200" height="200">
 
@@ -50,6 +60,7 @@
 	      <img id="jumping-jimbo-img-fall" src="images/jumping-jimbo-char-fall.png"
 	      width="200" height="200">
 
+		  <!-- Fisty Cuffs Mc'Gee -->
 	      <img id="fisty-cuffs-img" src="images/fistycuffs-mcgee.png"
 	      width="200" height="200">
 

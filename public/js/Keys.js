@@ -16,6 +16,7 @@ var Keys = function(up, left, right, down) {
 				that.left = true;
 				break;
 			case 38: // Up
+				// Changes image to falling graphic
 				localPlayer.changeState("falling");
 				that.up = true;
 				break;
@@ -36,6 +37,7 @@ var Keys = function(up, left, right, down) {
 				that.left = false;
 				break;
 			case 38: // Up
+				// Changes graphic back to normal
 				localPlayer.changeState("normal");
 				that.up = false;
 				break;

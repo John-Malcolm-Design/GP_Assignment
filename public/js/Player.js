@@ -68,18 +68,28 @@ var Player = function(startX, startY, fighterName) {
 			y = y;
 		};
 
+		// If else statements below change the graphic and 
+		// the x and y for each player when keys are pressed
 		if(this.getNormal() == "fisty-cuffs-img"){
 			// Left key takes priority over right
 			if (keys.left) {
 				if(this.getName() == this.getNormal()){
 					this.setName(this.getReverse());
 				}
-				x -= moveAmount;
+				if(this.getX() < 0){
+					x = x;
+				} else{
+					x -= moveAmount;
+				}
 			} else if (keys.right) {
 				if(this.getName() == this.getReverse()){
 					this.setName(this.getNormal());
 				}
-				x += moveAmount;
+				if(this.getX() > 699){
+					x = x;
+				} else{
+					x += moveAmount;
+				}
 			};
 		} 
 		else{
@@ -88,12 +98,20 @@ var Player = function(startX, startY, fighterName) {
 				if(this.getName() == this.getReverse()){
 					this.setName(this.getNormal());
 				}
-				x -= moveAmount;
+				if(this.getX() < 0){
+					x = x;
+				} else{
+					x -= moveAmount;
+				}
 			} else if (keys.right) {
 				if(this.getName() == this.getNormal()){
 					this.setName(this.getReverse());
 				}
-				x += moveAmount;
+				if(this.getX() > 699){
+					x = x;
+				} else{
+					x += moveAmount;
+				}
 			};
 		}
 		return (prevX != x || prevY != y) ? true : false;
@@ -105,6 +123,7 @@ var Player = function(startX, startY, fighterName) {
 		ctx.drawImage(fighter, x, y);
 	};
 
+	// Function changes graphic dependant on player state
 	var changeState = function(condition){
 		switch(condition){
 			case "falling":

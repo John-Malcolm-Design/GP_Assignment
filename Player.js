@@ -1,5 +1,5 @@
 /*
-Player Class
+Server side Player Class for Fighters
 */
 var Player = function(startX, startY, fighterName) {
 	var x = startX,

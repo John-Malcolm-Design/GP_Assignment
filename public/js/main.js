@@ -12,7 +12,6 @@ var canvas, // Canvas DOM element
 var currentScreen = 0;
 var currentPlayerSelected = 0;
 
-
 /**************************************************
  ** GAME INITIALISATION
  **************************************************/
@@ -32,13 +31,13 @@ function init() {
 	// Initialise remote players array
 	remotePlayers = [];
 
+	// Resets current screen and current player variables
 	currentScreen = 0;
 	currentPlayerSelected = 0;
 
 	// Start listening for events
 	setEventHandlers();
 };
-
 
 /**************************************************
  ** GAME EVENT HANDLERS
@@ -142,23 +141,29 @@ function animate() {
 	window.requestAnimFrame(animate);
 };
 
-
 /**************************************************
  ** GAME UPDATE
  **************************************************/
 function update() {
 
+	// Gravity to push the fighters back down
 	if (localPlayer.getY() < 485) {
 		localPlayer.setY(localPlayer.getY() + 2);
+		socket.emit("move player", {
+			x: localPlayer.getX(),
+			y: localPlayer.getY()
+		});
 	}
-
 	// Update local player and check for change
 	if (localPlayer.update(keys)) {
+
 		// Send local player data to the game server
-		socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+		socket.emit("move player", {
+			x: localPlayer.getX(),
+			y: localPlayer.getY()
+		});
 	};
 };
-
 
 /**************************************************
  ** GAME DRAW
@@ -188,30 +193,45 @@ function draw() {
 /**************************************************
  ** NEW GAME FUNCTION
  **************************************************/
- function newGame(fighter) {
+function newGame(fighter) {
 
-  if (fighter == 0) {
-    var name1 = "jumping-jimbo-img";
+	// Jumping Jimbo
+	if (fighter == 0) {
+		var name1 = "jumping-jimbo-img";
 
-    var startX = 650, startY = 485;
+		// Initialize starting position
+		var startX = 650, startY = 485;
 
-    // Initialise the local player
-    localPlayer = new Player(startX, startY, name1);
+		// Initialise the local player
+		localPlayer = new Player(startX, startY, name1);
 
-    socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name1});
-    animate();
+		// Emit new player
+		socket.emit("new player", {
+			x: localPlayer.getX(),
+			y: localPlayer.getY(),
+			name: name1
+		});
 
-  } else if (fighter == 1) {
-    var name2 = "fisty-cuffs-img";
+		// Animate
+		animate();
+	// Fisty Cuffs McGee
+	} else if (fighter == 1) {
+		var name2 = "fisty-cuffs-img";
 
-    var startX = 25, startY = 485;
+		// Initialize starting position
+		var startX = 25, startY = 485;
 
-    // Initialise the local player
-    localPlayer = new Player(startX, startY, name2);
+		// Initialise the local player
+		localPlayer = new Player(startX, startY, name2);
 
-    socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY(), name: name2});
+		// Emit new player
+		socket.emit("new player", {
+			x: localPlayer.getX(),
+			y: localPlayer.getY(),
+			name: name2
+		});
 
-    animate();
-
-  }
+		// Animate
+		animate();
+	}
 }

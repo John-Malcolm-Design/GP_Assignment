@@ -2,11 +2,11 @@
 ** NODE.JS REQUIREMENTS
 **************************************************/
 var util = require("util");				// Utility resources (logging, object inspection, etc)
-var express = require('express');
-var app     = express();
-var server  = require('http').createServer(app);
-var socket = require('socket.io').listen(server);
-var Player = require("./Player").Player;	// Player class
+var express = require('express'); 		// Express server Middleware
+var app     = express();				// Bind app to Express
+var server  = require('http').createServer(app);	// HTTP Server
+var socket = require('socket.io').listen(server);	// Bind socket to express
+var Player = require("./Player").Player;	// Player class for Fighters
 
 
 /**************************************************
