@@ -29,6 +29,15 @@ Navigate to *localhost:3000* in a browser to play game..
 - **/public/js/Player.js** Clientside Player class for Fighter. 
 - **/public/js/helper.js** Helper functions.
 - **/public/js/requestAnimationFrame.js** Optimized request animation frame shim written by Paul Irish. 
+- 
+### Continuous Improvement
+Game is not completed. See PSD's to get an idea of what the finished game will look like. 
+Some major updates include: 
+- Finish gameplay: Create character collusion events, add health meter, add "Winner"/"Game Over" screens.
+- Use a sprite sheet to improve efficiency and improve load time over network.
+- Make animation smoother/ create more graphics for character movement.
+- Add platforms for fighter to jump on.
+- Add power ups.
 
 Tutorial followed for scaffolding out multiplayer architecture: http://rawkes.com/articles/creating-a-real-time-multiplayer-game-with-websockets-and-node.html
 
