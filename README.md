@@ -12,7 +12,7 @@ See - https://nodejs.org/en/download/package-manager/
 Once Node and NPM are installed:
 run `npm install` to install Express and Socket.io.
 run `node server` to start the server listening on port 3000.
-Navigate to *localhost:3000* in a browser to play game..
+Navigate to *localhost:3000* in a browser to the play game.
 
 (Make sure to run above in the *root* of game directory)
 
