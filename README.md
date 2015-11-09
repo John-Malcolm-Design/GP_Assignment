@@ -1,5 +1,5 @@
 # Canvas Fighter
-## Multiplayer Canvas Game using Node &amp; Socket.io
+## Multiplayer HTML5 Canvas game using Node &amp; Socket.io
 
 **Retro street fighter game. Node, Express, Socket.IO & HTML5 Canvas**
 
