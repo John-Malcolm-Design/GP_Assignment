@@ -29,7 +29,8 @@ Navigate to *localhost:3000* in a browser to play game..
 - **/public/js/Player.js** Clientside Player class for Fighter. 
 - **/public/js/helper.js** Helper functions.
 - **/public/js/requestAnimationFrame.js** Optimized request animation frame shim written by Paul Irish. 
-- 
+
+
 ### Continuous Improvement
 Game is not completed. See PSD's to get an idea of what the finished game will look like. 
 Some major updates include: 
