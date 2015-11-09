@@ -3,9 +3,7 @@
 
 **Retro street fighter game. Node, Express, Socket.IO & HTML5 Canvas**
 
-All graphics are made by myself excepts for the active game background and the Fistycuffs McGee image.
-
-PSD's for game and character design can be downloaded here: https://drive.google.com/folderview?id=0B5Ll8cw07fgmbVlMN2dhZWRTOXc&usp=sharing
+All graphics are made by myself excepts for the active game background and the Fistycuffs McGee image. PSD's for game and character design can be downloaded here: https://drive.google.com/folderview?id=0B5Ll8cw07fgmbVlMN2dhZWRTOXc&usp=sharing
 
 ### Running Game
 Node & NPM must be installed to run and init this game locally. 
